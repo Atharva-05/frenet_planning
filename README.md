@@ -28,7 +28,10 @@ Obstacle constraints are formulated as non linear distance constraints of the fo
 $(s - s_{obs})^2 + (d - d_{obs})^2 > r$ where r is the obstacle clearance distance in the Frenet frame.
 
 ### Implementation
-In the interest of time, the approach is implemented in Python using the [do_mpc](https://www.do-mpc.com/) toolbox for optimal control. The approach may also be transferred to C++ using a symbolic framework like [casadi](https://web.casadi.org/).
+In the interest of time, the approach is implemented in Python using the [do_mpc](https://www.do-mpc.com/) toolbox for optimal control along with the ma97 IPOPT solver. The approach may also be transferred to C++ using a symbolic framework like [casadi](https://web.casadi.org/).
+Dependencies:
+1. [do_mpc](https://www.do-mpc.com/)
+2. [ipopt](https://github.com/coin-or-tools/ThirdParty-HSL)
 
 ### Re-planning loop
 *The method produces a sequence of optimal inputs and predicted trajectories in the Frenet coordinate space.*
@@ -41,6 +44,7 @@ Performance of the planner can be seen in the GIFs below.
 The figire eight trajectory in Cartesian frame is parameterized as
 - $x = a * sin(t)$
 - $y = a * cos(t) sin(t)$
+
 These expressions are used when computing the franet transforms.
 
 The light green trajectory is the predicted optimal trajectory from the MPC, and the reference trajectory is shown in green. The states of the MPC over the horizon interval are also shown.
